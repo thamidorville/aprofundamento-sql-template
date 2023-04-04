@@ -1,3 +1,4 @@
+-- Active: 1680612905081@@127.0.0.1@3306
 -- Conecte o arquivo pratica-aprofundamento-sql.db com a extensão MySQL e ative a conexão aqui
 
 -- Deletar tabela
@@ -43,3 +44,70 @@ VALUES
 SELECT * FROM pokemons;
 
 -- Práticas
+-- PRATICA 1
+--BUSCAR POKEMONS QUE TENHAM SPEED MAIOR QUE 60
+
+SELECT id, name, speed FROM pokemons 
+WHERE speed > 60;
+
+-- Buscar pokemons que tenham attack e 
+--special_attack maiores ou iguais a 60
+
+SELECT name, attack, special_attack FROM pokemons
+WHERE attack >= 60 AND special_attack >= 60;
+
+-- Buscar pokemons que tenham na coluna name 
+--o termo “saur” no final do texto
+
+SELECT name FROM pokemons
+WHERE name LIKE "%saur";
+
+--PRATICA 2
+
+--busque ba tabela pokemons a media simples da coluna hp
+SELECT AVG(hp) as mediaHp
+FROM pokemons;
+
+
+--busque o numero de linhas da tabela pokemons
+SELECT COUNT(*) as countRows
+FROM pokemons;
+
+--Refatore as queries acima apelidando as colunas 
+--com funcoes para nomes mais semanticos em camelCase
+
+--Pratica 3
+--Busque todos os pokemons e ordene-os baseado na 
+--coluna defense em ordem descrescente
+SELECT name, defense FROM pokemons
+ORDER BY defense DESC;
+
+-- - Busque novamente o número de pokemons cadastrados, 
+-- mas agora agrupe o resultado baseado na coluna type
+SELECT COUNT(*) as quantidadeDeTipos, type
+FROM pokemons
+GROUP BY type;
+
+-- Busque por todos os pokemons, limite o resultado 
+-- a 3 linhas iniciando a partir da quinta linha
+
+SELECT * FROM pokemons LIMIT 3 OFFSET 4;
+
+-- FIXACAO
+-- Busque por todos os pokemons aplicando:
+-- filtrar o resultado, mostrando somente os 
+-- itens que possuem a coluna type valendo fire ou grass
+
+SELECT id, name, type FROM pokemons
+WHERE type IN ('fire', 'grass');
+
+-- ordem crescente baseado na coluna attack
+SELECT name, attack FROM pokemons
+ORDER BY attack ASC;
+
+
+-- resultado das linhas limitado a 3 e iniciando 
+-- a partir da terceira linha
+
+SELECT * FROM pokemons
+LIMIT 3 OFFSET 2;
